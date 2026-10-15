@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5f1">
+  <meta name="description" content="اكتشفي تشكيلة الغزال ستورز من مفروشات العرائس وملابس البيت والخروج واللانجري.">
+  <title>الغزال ستورز | Alghazal Stores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-main">
+      <a class="brand" href="#home" aria-label="الغزال ستورز - الصفحة الرئيسية">
+        <img class="brand-logo" src="https://lh3.googleusercontent.com/d/1RDcDFMWaIqC6K891s4sWlf5mdUq2vIKW" alt="شعار الغزال ستورز">
+        <span class="brand-name">الغزال ستورز<span>AL GHAZAL STORES</span></span>
+      </a>
+      <label class="search-box" for="search-input">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        <input id="search-input" type="search" placeholder="ابحثي عن منتجك..." autocomplete="off">
+        <kbd>/</kbd>
+      </label>
+      <div class="header-actions">
+        <button class="icon-button admin-entry" id="admin-open" type="button" aria-label="لوحة التحكم" title="لوحة التحكم">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="m19.4 15 .1.1a1.7 1.7 0 0 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 0 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 0 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 0 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 0 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 0 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 0 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 0 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z"></path></svg>
+        </button>
+        <button class="cart-button" id="cart-open" type="button" aria-label="افتحي سلة التسوق">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l2.4 12.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L22 8H6"></path><circle cx="10" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+          <span>السلة</span><b id="cart-count">0</b>
+        </button>
+      </div>
+    </div>
+    <nav class="category-nav" aria-label="تصنيفات المنتجات" id="category-nav"></nav>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> تفاصيل صغيرة، إحساس مختلف</p>
+        <h1 id="hero-title">بيتكِ يبدأ<br>من <em>اختياركِ</em></h1>
+        <p class="hero-description">تشكيلة مختارة بعناية من مفروشات العرائس وقطع البيت الأنيقة، صنعت لترافق أجمل تفاصيل يومك.</p>
+        <a class="hero-link" href="#shop">تصفحي التشكيلة <span aria-hidden="true">←</span></a>
+      </div>
+      <div class="hero-image" role="img" aria-label="غرفة نوم أنيقة بألوان هادئة">
+        <div class="image-caption"><span>اختيارات تليق ببدايتك</span><b>01 / 05</b></div>
+      </div>
+      <div class="hero-index" aria-hidden="true">A.G — 01</div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div><p class="eyebrow">تسوقي حسب ذوقك</p><h2>قطع مختارة لكِ</h2></div>
+        <p class="product-count" id="product-count"></p>
+      </div>
+      <div class="filter-row" id="category-filters" aria-label="تصفية المنتجات"></div>
+      <div class="products-grid" id="products-grid" aria-live="polite"></div>
+      <div class="empty-state" id="empty-state" hidden><span>⌕</span><h3>لا توجد منتجات مطابقة</h3><p>جربي البحث بكلمات أخرى أو اختاري تصنيفًا مختلفًا.</p></div>
+      <div class="load-error" id="load-error" hidden>تعذر تحميل المنتجات. <button type="button" id="retry-load">حاولي مرة أخرى</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="footer-brand" href="#home">الغزال ستورز</a><p>اختيارات تحكي ذوقكِ، وتفاصيل تبقى.</p><span>© <span id="current-year"></span> Alghazal Stores</span></footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-title" aria-hidden="true">
+    <div class="drawer-header"><div><p class="eyebrow">اختياراتك</p><h2 id="cart-title">سلة التسوق</h2></div><button class="close-button" type="button" data-close aria-label="إغلاق">×</button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-empty" id="cart-empty"><span>♡</span><h3>سلتكِ تنتظر اختيارك</h3><p>ابدئي بإضافة القطع التي أعجبتك.</p></div>
+    <div class="cart-footer"><div class="total-row"><span>الإجمالي</span><strong id="cart-total">0 ج.م</strong></div><button class="primary-button checkout-button" id="checkout-open" type="button" disabled>تأكيد الطلب عبر الواتساب <span aria-hidden="true">←</span></button><p>تأكيد الطلب لا يتطلب دفعًا إلكترونيًا</p></div>
+  </aside>
+
+  <dialog class="modal" id="quick-view-modal" aria-labelledby="quick-title">
+    <button class="close-button modal-close" type="button" data-close aria-label="إغلاق">×</button>
+    <div id="quick-view-content"></div>
+  </dialog>
+
+  <dialog class="modal form-modal" id="order-modal" aria-labelledby="order-title">
+    <button class="close-button modal-close" type="button" data-close aria-label="إغلاق">×</button>
+    <p class="eyebrow">خطوة أخيرة</p><h2 id="order-title">بيانات التوصيل</h2>
+    <form id="order-form">
+      <label>الاسم بالكامل<input name="name" required maxlength="100" autocomplete="name" placeholder="اكتبي اسمك"></label>
+      <label>رقم الهاتف<input name="phone" required inputmode="tel" maxlength="20" autocomplete="tel" placeholder="01XXXXXXXXX"></label>
+      <label>العنوان التفصيلي للوصول<textarea name="address" required maxlength="400" autocomplete="street-address" rows="3" placeholder="المدينة، المنطقة، الشارع، وأقرب علامة مميزة"></textarea></label>
+      <label>ملاحظات إضافية <span class="optional">اختياري</span><textarea name="notes" maxlength="400" rows="2" placeholder="اللون أو المقاس المفضل..."></textarea></label>
+      <button class="primary-button" type="submit">إرسال الطلب عبر واتساب <span aria-hidden="true">←</span></button>
+      <p class="form-error" id="order-error" role="alert"></p>
+    </form>
+  </dialog>
+
+  <dialog class="modal form-modal admin-modal" id="admin-modal" aria-labelledby="admin-title">
+    <button class="close-button modal-close" type="button" data-close aria-label="إغلاق">×</button>
+    <div id="admin-login-view">
+      <p class="eyebrow">إدارة المتجر</p><h2 id="admin-title">لوحة التحكم</h2>
+      <form id="admin-login-form"><label>كلمة المرور<input name="password" type="password" required autocomplete="current-password" placeholder="أدخلي كلمة المرور"></label><button class="primary-button" type="submit">دخول</button><p class="form-error" id="admin-login-error" role="alert"></p></form>
+    </div>
+    <div id="admin-dashboard" hidden>
+      <div class="admin-heading"><div><p class="eyebrow">إدارة المخزون</p><h2>المنتجات</h2></div><button class="text-button" id="admin-logout" type="button">تسجيل الخروج</button></div>
+      <form class="product-form" id="product-form">
+        <label>اسم المنتج<input name="title" required maxlength="120" placeholder="مثال: طقم ملاية مطرز"></label>
+        <div class="form-columns"><label>السعر بالجنيه المصري<input name="price" type="number" required min="0" step="0.01" placeholder="0"></label><label>التصنيف<select name="category" required><option value="">اختاري التصنيف</option><option>المفروشات</option><option>ملابس بيت</option><option>خروج</option><option>لانجري</option><option>عروض خاصة</option></select></label></div>
+        <label>رابط الصورة<input name="image" type="url" required placeholder="https://... أو رابط Google Drive"></label>
+        <label>وصف المنتج<textarea name="description" maxlength="2000" rows="2" placeholder="تفاصيل المنتج..."></textarea></label>
+        <label class="availability-toggle"><input name="available" type="checkbox" checked><span>متاح للشراء</span></label>
+        <button class="primary-button" type="submit">إضافة المنتج <span aria-hidden="true">+</span></button>
+        <p class="form-error" id="product-form-error" role="alert"></p>
+      </form>
+      <div class="inventory-heading"><h3>المخزون الحالي</h3><span id="inventory-count"></span></div>
+      <div class="inventory-list" id="inventory-list"></div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

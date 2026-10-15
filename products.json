@@ -1,0 +1,101 @@
+[
+  {
+    "id": "f90052b3-0d0a-4e79-85a4-7d9a22c7ef88",
+    "title": "بيجامة هاي ويست",
+    "price": 225,
+    "category": "ملابس بيت",
+    "image": "https://lh3.googleusercontent.com/d/1zR0-bJ601iw4FnjLF6O-kV6jQIatRZO7",
+    "description": "تلبيس لحد 64 ك",
+    "available": true
+  },
+  {
+    "id": "ad9fa295-a5bb-4f10-b387-70ffc7a73168",
+    "title": "بيجامة هاي ويست",
+    "price": 225,
+    "category": "ملابس بيت",
+    "image": "https://lh3.googleusercontent.com/d/1zR0-bJ601iw4FnjLF6O-kV6jQIatRZO7",
+    "description": "تلبيس لحد 64 ك",
+    "available": true
+  },
+  {
+    "id": "4032edb8-51e2-4a91-8cfe-58f031885df5",
+    "title": "بيجامة هاي ويست",
+    "price": 225,
+    "category": "ملابس بيت",
+    "image": "https://lh3.googleusercontent.com/d/1zR0-bJ601iw4FnjLF6O-kV6jQIatRZO7",
+    "description": "تلبيس لحد 64 ك",
+    "available": true
+  },
+  {
+    "id": "fe1c4131-33f1-4541-b787-9563ebaa016a",
+    "title": "بيجامة هاي ويست",
+    "price": 225,
+    "category": "ملابس بيت",
+    "image": "https://lh3.googleusercontent.com/d/1zR0-bJ601iw4FnjLF6O-kV6jQIatRZO7",
+    "description": "تلبيس لحد 64 ك",
+    "available": true
+  },
+  {
+    "id": "a40b557e-bfc9-4ab2-a893-1cb349262b26",
+    "title": "بيجامة هاي ويست",
+    "price": 225,
+    "category": "ملابس بيت",
+    "image": "https://lh3.googleusercontent.com/d/1zR0-bJ601iw4FnjLF6O-kV6jQIatRZO7",
+    "description": "تلبيس لحد 64 ك",
+    "available": true
+  },
+  {
+    "id": "sample-bedding-set",
+    "title": "طقم ملاية عرايس مطرز",
+    "price": 1850,
+    "category": "المفروشات",
+    "image": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85",
+    "description": "طقم أنيق بتطريز ناعم وخامات مريحة تضيف لمسة فخامة لغرفة نومك.",
+    "available": true
+  },
+  {
+    "id": "sample-satin-robe",
+    "title": "روب ساتان بتفاصيل دانتيل",
+    "price": 790,
+    "category": "ملابس بيت",
+    "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=1000&q=85",
+    "description": "روب ساتان خفيف بقصة مريحة ولمسات دانتيل رقيقة.",
+    "available": true
+  },
+  {
+    "id": "sample-lounge-set",
+    "title": "طقم بيت قطني ناعم",
+    "price": 620,
+    "category": "ملابس بيت",
+    "image": "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85",
+    "description": "اختيار عملي ومريح للبيت، مصنوع من قطن ناعم مناسب للاستخدام اليومي.",
+    "available": true
+  },
+  {
+    "id": "sample-lingerie-set",
+    "title": "طقم دانتيل ناعم",
+    "price": 950,
+    "category": "لانجري",
+    "image": "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=1000&q=85",
+    "description": "تصميم أنثوي بتفاصيل دانتيل وخامة لطيفة على البشرة.",
+    "available": true
+  },
+  {
+    "id": "sample-special-offer",
+    "title": "عرض تجهيز العروسة",
+    "price": 2400,
+    "category": "عروض خاصة",
+    "image": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=85",
+    "description": "اختيارات مميزة من تشكيلتنا بسعر خاص لفترة محدودة.",
+    "available": true
+  },
+  {
+    "id": "sample-going-out",
+    "title": "طقم خروج أنيق",
+    "price": 1350,
+    "category": "خروج",
+    "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85",
+    "description": "إطلالة أنيقة بقصة عصرية تناسب مشاويرك ومناسباتك.",
+    "available": true
+  }
+]
