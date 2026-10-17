@@ -331,7 +331,7 @@ $('#admin-login-form').addEventListener('submit', async event => {
 function renderInventoryFrom(products) {
   $('#inventory-count').textContent = `${new Intl.NumberFormat('ar-EG').format(products.length)} منتج`;
   $('#inventory-list').innerHTML = products.map(product => `
-    <article class="inventory-item"><img src="${escapeHtml(driveImageUrl(product.image))}" alt="" loading="lazy"><div><h4>${escapeHtml(product.title)}</h4><p>${formatPrice(product.price)} · <span class="inventory-status${product.available === false ? ' off' : ''}"></span>${product.available === false ? 'غير متاح' : 'متاح'}</p></div><button type="button" data-delete-product="${escapeHtml(product.id)}">حذف المنتج</button></article>
+    <article class="inventory-item"><img src="${escapeHtml(driveImageUrl(product.image))}" alt="" loading="lazy"><div><h4>${escapeHtml(product.title)}</h4><p>${formatPrice(product.price)} · <span class="inventory-status${product.available === false ? ' off' : ''}"></span>${product.available === false ? 'غير متاح' : 'متاح'}</p></div></article>
   `).join('') || '<p class="empty-state">لا توجد منتجات.</p>';
 }
 
@@ -361,19 +361,6 @@ $('#product-form').addEventListener('submit', async event => {
     $('#product-form-error').textContent = error.message;
   } finally {
     submitButton.disabled = false;
-  }
-});
-$('#inventory-list').addEventListener('click', async event => {
-  const button = event.target.closest('[data-delete-product]');
-  if (!button) return;
-  if (!window.confirm('هل تريدين حذف هذا المنتج نهائيًا؟')) return;
-  try {
-    await apiRequest(`/api/products/${encodeURIComponent(button.dataset.deleteProduct)}`, { method: 'DELETE' });
-    await renderInventory();
-    await loadProducts();
-    showToast('تم حذف المنتج');
-  } catch (error) {
-    showToast(error.message);
   }
 });
 $('#admin-logout').addEventListener('click', () => {

@@ -101,6 +101,7 @@
       <form class="product-form" id="product-form">
         <label>اسم المنتج<input name="title" required maxlength="120" placeholder="مثال: طقم ملاية مطرز"></label>
         <div class="form-columns"><label>السعر بالجنيه المصري<input name="price" type="number" required min="0" step="0.01" placeholder="0"></label><label>التصنيف<select name="category" required><option value="">اختاري التصنيف</option><option>المفروشات</option><option>ملابس بيت</option><option>خروج</option><option>لانجري</option><option>عروض خاصة</option></select></label></div>
+        <label>سعر العرض بالجنيه المصري <span class="optional">اختياري</span><input name="discountPrice" type="number" min="0" step="0.01" placeholder="اتركيه فارغًا إذا لم يوجد خصم"></label>
         <label>رابط الصورة<input name="image" type="url" required placeholder="https://... أو رابط Google Drive"></label>
         <label>وصف المنتج<textarea name="description" maxlength="2000" rows="2" placeholder="تفاصيل المنتج..."></textarea></label>
         <label class="availability-toggle"><input name="available" type="checkbox" checked><span>متاح للشراء</span></label>
