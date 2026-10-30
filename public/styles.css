@@ -86,6 +86,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .product-category { color: var(--gold); font-size: 9px; }
 .product-title { min-height: 25px; margin: 5px 0 7px; font-size: 12px; font-weight: 500; }
 .product-price { margin: 0; color: var(--burgundy); font: 600 13px 'DM Sans', sans-serif; }
+.price-before { margin-inline-end: 7px; color: var(--muted); font-size: .82em; font-weight: 400; text-decoration: line-through; }
+.price-current { color: var(--burgundy); font-weight: 700; }
 .product-actions { display: flex; gap: 7px; margin-top: 12px; }
 .add-button { flex: 1; min-height: 37px; display: flex; justify-content: center; align-items: center; gap: 7px; border: 1px solid var(--burgundy); border-radius: 2px; background: var(--burgundy); color: white; font-size: 10px; cursor: pointer; transition: background .2s, color .2s; }
 .add-button:hover { background: transparent; color: var(--burgundy); }
@@ -115,6 +117,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .cart-line-info { min-width: 0; }
 .cart-line-info h3 { margin: 5px 0; font-size: 11px; font-weight: 500; }
 .cart-line-info p { margin: 0; color: var(--burgundy); font: 600 12px 'DM Sans', sans-serif; }
+.cart-line-prices { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px; }
 .cart-line-tools { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; }
 .qty-control { display: inline-flex; align-items: center; gap: 9px; padding: 3px 6px; border: 1px solid var(--line); }
 .qty-control button { width: 21px; height: 21px; border: 0; background: transparent; cursor: pointer; font-size: 15px; }

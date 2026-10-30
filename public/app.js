@@ -14,6 +14,21 @@ const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character =>
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[character]));
 const formatPrice = price => `${new Intl.NumberFormat('ar-EG', { maximumFractionDigits: 2 }).format(Number(price) || 0)} ج.م`;
+function currentPrice(product) {
+  const price = Number(product.price) || 0;
+  const discountPrice = Number(product.discountPrice);
+  return product.discountPrice !== null && product.discountPrice !== undefined && product.discountPrice !== ''
+    && Number.isFinite(discountPrice) && discountPrice >= 0 && discountPrice < price
+    ? discountPrice
+    : price;
+}
+function productPriceMarkup(product) {
+  const price = Number(product.price) || 0;
+  const discountedPrice = currentPrice(product);
+  return discountedPrice < price
+    ? `<span class="price-before">${formatPrice(price)}</span><strong class="price-current">${formatPrice(discountedPrice)}</strong>`
+    : `<strong class="price-current">${formatPrice(price)}</strong>`;
+}
 const parseLocalizedInteger = value => {
   const westernDigits = String(value).replace(/[٠-٩]/g, digit => String('٠١٢٣٤٥٦٧٨٩'.indexOf(digit)));
   return Number(westernDigits) || 1;
@@ -75,7 +90,7 @@ function renderProducts() {
       <div class="product-info">
         <span class="product-category">${escapeHtml(product.category)}</span>
         <h3 class="product-title">${escapeHtml(product.title)}</h3>
-        <p class="product-price">${formatPrice(product.price)}</p>
+        <p class="product-price">${productPriceMarkup(product)}</p>
         <div class="product-actions"><button class="add-button" type="button" data-add="${escapeHtml(product.id)}"><span aria-hidden="true">+</span> أضف للسلة</button></div>
       </div>
     </article>
@@ -120,7 +135,7 @@ function cartTotals() {
     const product = state.products.find(item => item.id === id);
     if (!product) return result;
     result.quantity += quantity;
-    result.total += Number(product.price) * quantity;
+    result.total += currentPrice(product) * quantity;
     return result;
   }, { quantity: 0, total: 0 });
 }
@@ -137,7 +152,7 @@ function renderCart() {
     const product = state.products.find(item => item.id === id);
     return `<article class="cart-line">
       <img src="${escapeHtml(driveImageUrl(product.image))}" alt="" loading="lazy">
-      <div class="cart-line-info"><span class="product-category">${escapeHtml(product.category)}</span><h3>${escapeHtml(product.title)}</h3><p>${formatPrice(product.price)}</p>
+      <div class="cart-line-info"><span class="product-category">${escapeHtml(product.category)}</span><h3>${escapeHtml(product.title)}</h3><p class="cart-line-prices">${productPriceMarkup(product)}</p>
         <div class="cart-line-tools"><div class="qty-control"><button type="button" data-quantity="-1" data-id="${escapeHtml(id)}" aria-label="تقليل الكمية">−</button><span>${new Intl.NumberFormat('ar-EG').format(quantity)}</span><button type="button" data-quantity="1" data-id="${escapeHtml(id)}" aria-label="زيادة الكمية">+</button></div><button class="remove-button" type="button" data-remove="${escapeHtml(id)}">حذف</button></div>
       </div><span></span>
     </article>`;
@@ -165,7 +180,7 @@ function showQuickView(id) {
   if (!product) return;
   $('#quick-view-content').innerHTML = `
     <img class="quick-image" src="${escapeHtml(driveImageUrl(product.image))}" alt="${escapeHtml(product.title)}">
-    <div class="quick-details"><span class="product-category">${escapeHtml(product.category)}</span><h2 id="quick-title">${escapeHtml(product.title)}</h2><p>${escapeHtml(product.description || 'قطعة مختارة بعناية من الغزال ستورز.')}</p><p class="quick-price">${formatPrice(product.price)}</p><div class="qty-control"><button type="button" data-quick-qty="-1" aria-label="تقليل الكمية">−</button><span id="quick-quantity">١</span><button type="button" data-quick-qty="1" aria-label="زيادة الكمية">+</button></div><button class="primary-button quick-add" type="button" data-quick-add="${escapeHtml(product.id)}">أضف للسلة</button></div>
+    <div class="quick-details"><span class="product-category">${escapeHtml(product.category)}</span><h2 id="quick-title">${escapeHtml(product.title)}</h2><p>${escapeHtml(product.description || 'قطعة مختارة بعناية من الغزال ستورز.')}</p><p class="quick-price">${productPriceMarkup(product)}</p><div class="qty-control"><button type="button" data-quick-qty="-1" aria-label="تقليل الكمية">−</button><span id="quick-quantity">١</span><button type="button" data-quick-qty="1" aria-label="زيادة الكمية">+</button></div><button class="primary-button quick-add" type="button" data-quick-add="${escapeHtml(product.id)}">أضف للسلة</button></div>
   `;
   $('#quick-view-modal').showModal();
 }
@@ -213,7 +228,7 @@ function buildOrderMessage(details) {
   const items = [...state.cart.entries()].map(([id, quantity]) => {
     const product = state.products.find(item => item.id === id);
     if (!product) return null;
-    return `- ${product.title} | التصنيف: ${product.category} | الكمية: ${quantity} | السعر: ${formatPrice(product.price)}`;
+    return `- ${product.title} | التصنيف: ${product.category} | الكمية: ${quantity} | السعر: ${formatPrice(currentPrice(product))}`;
   }).filter(Boolean).join('\n');
   return [
     '🛍️ طلب جديد من متجر الغزال ستورز',
@@ -257,6 +272,7 @@ $('#products-grid').addEventListener('click', event => {
   if (quick) showQuickView(quick.dataset.quickView);
 });
 $('#cart-open').addEventListener('click', openCart);
+$('#cart-close').addEventListener('click', closeCart);
 $('#overlay').addEventListener('click', closeCart);
 $('#cart-items').addEventListener('click', event => {
   const quantityButton = event.target.closest('[data-quantity]');
@@ -331,7 +347,7 @@ $('#admin-login-form').addEventListener('submit', async event => {
 function renderInventoryFrom(products) {
   $('#inventory-count').textContent = `${new Intl.NumberFormat('ar-EG').format(products.length)} منتج`;
   $('#inventory-list').innerHTML = products.map(product => `
-    <article class="inventory-item"><img src="${escapeHtml(driveImageUrl(product.image))}" alt="" loading="lazy"><div><h4>${escapeHtml(product.title)}</h4><p>${formatPrice(product.price)} · <span class="inventory-status${product.available === false ? ' off' : ''}"></span>${product.available === false ? 'غير متاح' : 'متاح'}</p></div></article>
+    <article class="inventory-item"><img src="${escapeHtml(driveImageUrl(product.image))}" alt="" loading="lazy"><div><h4>${escapeHtml(product.title)}</h4><p>${productPriceMarkup(product)} · <span class="inventory-status${product.available === false ? ' off' : ''}"></span>${product.available === false ? 'غير متاح' : 'متاح'}</p></div></article>
   `).join('') || '<p class="empty-state">لا توجد منتجات.</p>';
 }
 
@@ -345,6 +361,7 @@ $('#product-form').addEventListener('submit', async event => {
   const product = {
     title: String(form.get('title')).trim(),
     price: Number(form.get('price')),
+    discountPrice: form.get('discountPrice') === '' ? null : Number(form.get('discountPrice')),
     category: String(form.get('category')),
     image: driveImageUrl(String(form.get('image'))),
     description: String(form.get('description')).trim(),

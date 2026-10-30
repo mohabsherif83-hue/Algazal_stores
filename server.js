@@ -13,13 +13,15 @@ app.use(express.json({ limit: '1mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 function fromApiProduct(product) {
+  const discountPrice = product.discount_price === null || product.discount_price === undefined || product.discount_price === ''
+    ? null
+    : Number(product.discount_price);
   return {
     id: String(product.id ?? ''),
     title: String(product.name ?? ''),
     category: String(product.category ?? ''),
-    price: Number(product.discount_price !== null && product.discount_price !== undefined && product.discount_price !== ''
-      ? product.discount_price
-      : product.price) || 0,
+    price: Number(product.price) || 0,
+    discountPrice: Number.isFinite(discountPrice) ? discountPrice : null,
     image: String(product.image_url ?? ''),
     description: String(product.description ?? ''),
     available: product.in_stock !== false
